@@ -19,6 +19,7 @@ class Member(models.Model):
         ('ACCOUNTANT', 'Accountant'),
         ('OTHER', 'Other'),
     )
+    #slug = models.SlugField()
     first_name = models.CharField(max_length=120, blank=True)
     last_name = models.CharField(max_length=120, blank=True)
     gender = models.CharField(max_length=1, choices=gender_choices, blank=True)
@@ -29,10 +30,18 @@ class Member(models.Model):
     address = models.CharField(max_length=250, blank=True)
     date_of_birth = models.DateField()
     next_of_kin = models.CharField(max_length=250, blank=False)
-    contributions = models.IntegerField
+    contributions = models.IntegerField()
     occupation = models.CharField(max_length=60, choices=occupation_choices)
     profile_picture = models.ImageField(upload_to='photos/%Y/%m/%d', blank=False)
     date = models.DateTimeField(auto_now_add=True)
 
+
+    class Meta:
+        verbose_name = 'Member Name'
+        verbose_name_plural = 'Members Names'
+
 def __str__(self):
-        return self.firstName
+        return self.firstName + ' ' + self.lastName + ' ' + self.email + ' ' + self.contributions
+
+def get_absolute_url(self):
+    return reverse('member_details', kwargs={'slug': self.slug})

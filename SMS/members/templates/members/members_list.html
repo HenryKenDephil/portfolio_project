@@ -2,10 +2,45 @@
 {% extends 'base_layout.html' %}
 
 {% block content %}
-    <h1>Table listing sacco members</h1>
+    <h1 style="padding-left: 35%;padding-top: 1px; padding-bottom: 1px;">Table listing sacco members</h1>
     <div class="members">
-        {% for member in members %}
+        
+            <div class="member">
+                <!-- On tables -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr class="table-primary">
+                            <th scope="column">Member ID</th>
+                            <th scope="column">Fisrt Name</th>
+                            <th scope="column">Last Name</th>
+                            <th scope="column">Gender</th>
+                            <th scope="column">Date Joined</th>
+                            <th scope="column">Phone Number</th>
+                            <th scope="column">Email</th>
+                            <th scope="column">Occupation</th>
+                            <th scope="column">Contributions</th> 
+                            
+                        </tr> 
+                    </thead>
+                    <tbody>
+                        {% for member in members %}
+                            <tr>
+                                <td>{{ member.id }}</td>
+                                <td>{{ member.first_name }}</td>
+                                <td>{{ member.last_name }}</td>
+                                <td>{{ member.gender }}</td>
+                                <td>{{ member.date}}</td>
+                                <td>{{ member.phone }}</td>
+                                <td>{{ member.email }}</td>
+                                <td>{{ member.occupation }}</td>
+                                <td>{{ member.contributions}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
 
-        {% endfor %}
+
+                </table>
+            </div>
+        
     </div>
 {% endblock %}
