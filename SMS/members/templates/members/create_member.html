@@ -1,0 +1,12 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+
+<center style="margin-top: 8%; margin-bottom: 5%;" >
+    <form method="POST" action="{% url 'create' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save">
+    </form>
+</center>
+
+{% endblock %}

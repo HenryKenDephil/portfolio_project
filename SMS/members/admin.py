@@ -1,5 +1,5 @@
 from django.contrib import admin
-from.models import Member
+from.models import Members
 
 # Register your models here.
 
@@ -9,7 +9,7 @@ admin.site.site_header = 'SACCO MANAGEMENT SYSTEM(SMS)'
 admin.site.site_title = 'Welcome to SMS Demo'
 admin.site.index_title = 'Admin Portal'
 
-class AdminMember(admin.ModelAdmin):
+class AdminMembers(admin.ModelAdmin):
     list_display = ['id', 'first_name', 'last_name', 'gender', 'phone', 'email', 'occupation', 'contributions']
     list_display_links = ['id']
     list_per_page = 10
@@ -17,6 +17,6 @@ class AdminMember(admin.ModelAdmin):
     list_filter = ['gender', 'occupation']
 
     class Meta:
-        model = Member
+        model = Members
 
-admin.site.register(Member, AdminMember)
+admin.site.register(Members, AdminMembers)

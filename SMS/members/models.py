@@ -2,10 +2,13 @@ from django.db import models
 #from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.dispatch import receiver
+from django.db.models.signals import post_save, post_delete
+
 
 
 # Create your models here.
-class Member(models.Model):
+class Members(models.Model):
     gender_choices = (
         ('M', 'Male'),
         ('F', 'Female'),    
@@ -19,7 +22,7 @@ class Member(models.Model):
         ('ACCOUNTANT', 'Accountant'),
         ('OTHER', 'Other'),
     )
-    #slug = models.SlugField()
+    id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=120, blank=True)
     last_name = models.CharField(max_length=120, blank=True)
     gender = models.CharField(max_length=1, choices=gender_choices, blank=True)
@@ -32,16 +35,17 @@ class Member(models.Model):
     next_of_kin = models.CharField(max_length=250, blank=False)
     contributions = models.IntegerField()
     occupation = models.CharField(max_length=60, choices=occupation_choices)
-    profile_picture = models.ImageField(upload_to='photos/%Y/%m/%d', blank=False)
+    profile_picture = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True)
     date = models.DateTimeField(auto_now_add=True)
 
-
+    
     class Meta:
         verbose_name = 'Member Name'
         verbose_name_plural = 'Members Names'
 
-def __str__(self):
-        return self.firstName + ' ' + self.lastName + ' ' + self.email + ' ' + self.contributions
+    def __str__(self):
+        return self.firstName + ' ' + self.lastName + ' ' + self.email + '___ ' + self.contributions
 
-def get_absolute_url(self):
-    return reverse('member_details', kwargs={'slug': self.slug})
+    def get_absolute_url(self):
+        return reverse('member_details', kwargs={'pk': self.pk})
+

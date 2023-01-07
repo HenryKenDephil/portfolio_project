@@ -1,13 +1,40 @@
-
 {% extends 'base_layout.html' %}
 
+
 {% block content %}
-    <h1 style="padding-left: 35%;padding-top: 1px; padding-bottom: 1px;">Table listing sacco members</h1>
-    <div class="members">
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            
+            {% if message.tags == 'error' %}
+                <div class="bg-danger">
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                </div>
+            {% endif %}
+
+            {% if message.tags == 'success' %}
+                <div class="bg-success">
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                </div>
+            {% endif %}
+            
+            {% if message.tags == 'info' %}
+                <div class="bg-info">
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                </div>
+            {% endif %}
+
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div>
+        <h2 style="text-align: center; margin-top: 8%;">SACCO Members</h2>
         
-            <div class="member">
-                <!-- On tables -->
-                <table class="table table-striped">
+        <center style="margin-bottom: 5px;"><a href="/create/" class="btn btn-primary">Add New Member</a></center>
+
+        <div class="members">
+            <div class="main" method="POST">
+                <table class="table table-striped" style="position: fixed; width: 99%;">
                     <thead>
                         <tr class="table-primary">
                             <th scope="column">Member ID</th>
@@ -18,29 +45,59 @@
                             <th scope="column">Phone Number</th>
                             <th scope="column">Email</th>
                             <th scope="column">Occupation</th>
-                            <th scope="column">Contributions</th> 
-                            
-                        </tr> 
+                            <th scope="column">Contributions</th>
+                            <th scope="column">Manage</th>
+
+
+                        </tr>
                     </thead>
                     <tbody>
-                        {% for member in members %}
-                            <tr>
-                                <td>{{ member.id }}</td>
-                                <td>{{ member.first_name }}</td>
-                                <td>{{ member.last_name }}</td>
-                                <td>{{ member.gender }}</td>
-                                <td>{{ member.date}}</td>
-                                <td>{{ member.phone }}</td>
-                                <td>{{ member.email }}</td>
-                                <td>{{ member.occupation }}</td>
-                                <td>{{ member.contributions}}</td>
-                            </tr>
+                        {% for member in paginator_module %}
+                        <tr>
+                            <td>{{ member.id }}</td>
+                            <td>{{ member.first_name }}</td>
+                            <td>{{ member.last_name }}</td>
+                            <td>{{ member.gender }}</td>
+                            <td>{{ member.date}}</td>
+                            <td>{{ member.phone }}</td>
+                            <td>{{ member.email }}</td>
+                            <td>{{ member.occupation }}</td>
+                            <td>{{ member.contributions}}</td>
+                            <td>
+                            
+                                <a class="btn btn-secondary" style="margin-right: 20px;" href="{% url 'edit' member.id %}"><span
+                                        class="glyphicon glyphicon-pencil">Edit</span></a>
+                                <a href="{% url 'delete' id=member.id %}">
+                                <button class="btn btn-danger" onclick="deleteFunction()">Delete</button>
+                            </td>
+                        </tr>
                         {% endfor %}
                     </tbody>
-
-
                 </table>
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if paginator_module.has_previous %}
+                            <a href="?page=1">&laquo; first</a>
+                            <a href="?page={{ paginator_module.previous_page_number }}">previous</a>
+                        {% endif %}
+                
+                        <span class="current">
+                            Page {{ paginator_module.number }} of {{ paginator_module.paginator.num_pages }}.
+                        </span>
+                
+                        {% if paginator_module.has_next %}
+                            <a href="?page={{ paginator_module.next_page_number }}">next</a>
+                            <a href="?page={{ paginator_module.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
             </div>
-        
-    </div>
+        </div>
+    <br><br>
+
+    <script>
+        function deleteFunction(){
+            alert('Are you sure you want to delete this member?');
+        }
+    </script>
 {% endblock %}

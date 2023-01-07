@@ -1,0 +1,10 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+
+<form style="margin-top: 10%; margin-left: 10px;" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Edit">
+</form>
+
+{% endblock %}
