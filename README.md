@@ -3,7 +3,10 @@
 
 
 How To Run The SACCO Management System in Django
+
+
 Step 1: gitclone this repository
+
 Step 2: Go inside the project folder, open cmd and type the following commands to install Django Framework and run the webserver:
 pip install virtualenv
 virtualenv env
