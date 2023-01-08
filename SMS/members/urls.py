@@ -3,7 +3,8 @@ from django.urls import path, include, re_path
 from .import views 
 
 urlpatterns = [
-    path('', views.members, name='members'),
+    path('', views.home, name='home'),
+    path('members/', views.members, name='members'),
     path('create/', views.create_member, name='create'),
     re_path(r'^edit/(?P<id>\d+)/$', views.edit_member, name='edit'),
     #path('', views.update_member, name='update'),

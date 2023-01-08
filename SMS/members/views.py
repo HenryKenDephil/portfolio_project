@@ -9,6 +9,9 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.template.context_processors import csrf
 
+def home(request):
+    return render(request, 'members/home.html')
+
 def members(request):
     members = Members.objects.all().order_by()
     '''adding django table module'''

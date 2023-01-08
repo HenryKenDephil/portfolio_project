@@ -22,7 +22,7 @@
     <div>
       <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'members' %}">DashBoard</a>
+          <a class="navbar-brand" href="{% url 'home' %}">DashBoard</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -55,8 +55,7 @@
   </div>
   <div></div>
   <div>
-    {% block title %}
-    {% endblock title %}
+   
   </div>
   <div>
     {% block content %}
@@ -64,8 +63,8 @@
     {% endblock %}
   </div>
   
-  <div class="card-footer fixed-bottom text-muted" style="background-color: cornflowerblue;">
-    <H2>SMS</H2>
+  <div class="card-footer fixed-bottom text-muted" style="background-color: cornflowerblue; height: 4%;">
+    <center style="align-items: center;">&copy; <em id="date"></em>SMS</center>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

@@ -3,6 +3,7 @@
 
 <center style="margin-top: 8%; margin-bottom: 5%;" >
     <form method="POST" action="{% url 'create' %}">
+    <h2>Enter Member's Details Here</h2>
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Save">
