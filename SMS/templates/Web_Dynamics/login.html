@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://kit.fontawesome.com/61eaa75593.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<title>sacco manager</title>
+</head>
+<body>
+	<div class="container">
+		<div class="formBox">
+			<h1 id="title">Sign Up</h1>
+			<form>
+				<div class="inputGroup">
+					<div class="inputField" id="nameField">
+						<i class="fa-solid fa-user"></i>
+						<input type="text" placeholder="Name">
+					</div>
+
+					<div class="inputField">
+						<i class="fa-solid fa-at"></i>
+						<input type="email" placeholder="Email">
+					</div>
+
+					<div class="inputField">
+						<i class="fa-solid fa-key"></i>
+						<input type="password" placeholder="Password">
+					</div>
+					<p>Lost Password <a href="#">Click Here</a></p>
+				</div>
+				<div class="BtnField">
+					<button type="button" id="signupBtn">Sign Up</button>
+					<button type="button" id="signinBtn" class="disabled">Sign In</button>
+				</div>
+			</form>
+		</div>
+	</div>
+<script>
+	let signupBtn = document.getElementById("signupBtn");
+	let signinBtn = document.getElementById("signinBtn");
+	let nameField = document.getElementById("nameField");
+	let title = document.getElementById("title");
+
+	signinBtn.onclick = function(){
+		nameField.style.maxHeight = "0";
+		title.innerHTML = "Sign In";
+		signupBtn.classList.add("disabled");
+		signinBtn.classList.remove("disabled");
+	}
+	signupBtn.onclick = function(){
+		nameField.style.maxHeight = "60px";
+		title.innerHTML = "Sign Up";
+		signupBtn.classList.remove("disabled");
+		signinBtn.classList.add("disabled");
+	}
+</script>
+</body>
+</html>
