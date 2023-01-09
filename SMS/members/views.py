@@ -48,25 +48,26 @@ def create_member(request):
     member = get_object_or_404(Members, id=id)
     return render(request,'members/edit_member.html', {'member': member})'''
 
-def edit_member(request, id):
+def edit_members(request, id):
     member = get_object_or_404(Members, id=id)
-    form = EditForm(request.POST or None, instance = member)
-    if form.is_valid():
-        form.save()
+    if request.method == 'POST':
+        form = EditForm(request.POST, instance=member)
+        if form.is_valid():
+            print('success')
+            form.save()
+        print(form.errors)
         return redirect('members') 
+    else:
+        form = EditForm(instance=member)
+        print(form)
 
-    form = EditForm()
-    context ={
-        'member': member
-    }
-    return render(request,'members/edit_member.html', {'member': context})
+    return render(request,'members/edit_member.html', {'form' : form})
 
 def delete_member(request, id):
     member = get_object_or_404(Members, id=id)
-    if request.method == 'POST':
-        member.delete()
-        return redirect('delete')
-    return render(request, 'members/delete_member.html', {'member': member})
+    member.delete()
+    return redirect('members')
+    
 
 
 

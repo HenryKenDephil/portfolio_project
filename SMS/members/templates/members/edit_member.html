@@ -1,10 +1,13 @@
 {% extends 'base_layout.html' %}
 {% block content %}
 
-<form style="margin-top: 10%; margin-left: 10px;" method="POST">
+<center style="margin-top: 8%; margin-bottom: 5%;" >
+    <form method="POST">
+    <h2>Edit Member's Details Here</h2>
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Edit">
-</form>
+    <input type="submit" value="Save">
+    </form>
+</center>
 
 {% endblock %}

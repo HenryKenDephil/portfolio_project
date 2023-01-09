@@ -44,7 +44,7 @@ class Members(models.Model):
         verbose_name_plural = 'Members Names'
 
     def __str__(self):
-        return self.firstName + ' ' + self.lastName + ' ' + self.email + '___ ' + self.contributions
+        return self.first_name + ' ' + self.last_name + ' ' + self.email + '___ ' + self.gender
 
     def get_absolute_url(self):
         return reverse('member_details', kwargs={'pk': self.pk})
