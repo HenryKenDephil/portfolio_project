@@ -12,9 +12,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-xuru5gyq5@vuwj_b+por^90o*p-v!ucrp3#w782qb8k32rfb(w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -67,7 +67,7 @@ WSGI_APPLICATION = 'SMS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         #'USER': 'postgres',
         #'PASSWORD': ,
         #'HOST': 'localhost',
